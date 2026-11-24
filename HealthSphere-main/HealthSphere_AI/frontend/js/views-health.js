@@ -720,7 +720,7 @@ VIEWS.family = async function (container) {
           ? `<circle r="${HALF - 1}" fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`
           : `<path d="M 0 ${-HALF} L ${HALF} 0 L 0 ${HALF} L ${-HALF} 0 Z" fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`;
       const slash = deceased ? `<line x1="${-HALF + 2}" y1="${HALF - 2}" x2="${HALF - 2}" y2="${-HALF + 2}" stroke="#334155" stroke-width="2.5"/>` : '';
-      const arrow = isYou ? `<path class="ped-arrow" d="M ${-HALF - 17} 0 l 12 -7 l 0 14 Z"/>` : '';
+      const arrow = isYou ? `<path class="ped-arrow" d="M ${-HALF - 3} 0 L ${-HALF - 15} -7 L ${-HALF - 15} 7 Z"/>` : '';
       const num = genNum[n.id] ? `<text class="ped-num" text-anchor="middle" y="${-HALF - 8}">${genNum[n.id]}</text>` : '';
       const sub = isYou ? 'Proband' : shortLabel(m) + (m.ageOrYear ? ` · ${m.ageOrYear}` : '');
       const conds = isYou ? '' : (m.conditions || []).slice(0, 2)
@@ -766,7 +766,7 @@ VIEWS.family = async function (container) {
         <span><svg width="15" height="15" viewBox="0 0 15 15"><path d="M7.5 1.5 L13.5 7.5 L7.5 13.5 L1.5 7.5 Z" fill="#fff" stroke="#334155" stroke-width="1.6"/></svg>Sex unknown</span>
         <span><svg width="15" height="15" viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" rx="2" fill="#DC2626"/></svg>Affected</span>
         <span><svg width="15" height="15" viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" rx="2" fill="#fff" stroke="#334155" stroke-width="1.6"/><line x1="2.5" y1="12.5" x2="12.5" y2="2.5" stroke="#334155" stroke-width="1.6"/></svg>Deceased</span>
-        <span><svg width="19" height="15" viewBox="0 0 19 15"><path d="M1 7.5 L12 2 L12 13 Z" fill="#0F172A"/></svg>Proband (you)</span>
+        <span><svg width="19" height="15" viewBox="0 0 19 15"><path d="M13 7.5 L2 2 L2 13 Z" fill="#0F172A"/></svg>Proband (you)</span>
         <span><svg width="22" height="15" viewBox="0 0 22 15"><line x1="1" y1="7.5" x2="21" y2="7.5" stroke="#334155" stroke-width="2"/></svg>Mating</span>
         <span><svg width="22" height="15" viewBox="0 0 22 15"><path d="M11 1 L11 7 L1 13 M11 7 L21 13" fill="none" stroke="#334155" stroke-width="2"/></svg>Parent–child</span>
       </div>
