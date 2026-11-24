@@ -1,0 +1,37 @@
+# HealthSphere backend — Node API web service.
+# Render reads this from the repo root; rootDir points at the backend folder.
+
+services:
+  - type: web
+    name: healthsphere-api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: HealthSphere-main/HealthSphere_AI/backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: STATIC_DIR
+        value: "off"
+      - key: PORT
+        value: "3000"
+
+# NOTE: the free plan uses an ephemeral filesystem, so db.json and uploaded
+# reports reset when the service restarts or redeploys. For persistence,
+# upgrade to a paid plan, add a disk, and point the app at it:
+#
+#   disk:
+#     name: healthsphere-data
+#     mountPath: /data
+#     sizeGB: 1
+#   envVars:
+#     - key: HealthSphere_DATA_DIR
+#       value: /data
+#
+# Alternatively set DATABASE_URL (or SUPABASE_DB_URL) to a Postgres connection
+# string and optionally SUPABASE_URL + SUPABASE_SERVICE_KEY for report files.

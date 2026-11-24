@@ -1,0 +1,29 @@
+# HealthSphere frontend — static SPA on Netlify.
+# Replace REPLACE-WITH-YOUR-RENDER-APP with the Render service name (or paste the full URL).
+
+[build]
+  base = "HealthSphere-main/HealthSphere_AI/frontend"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Proxy the API through Netlify so the browser stays on one origin.
+# This keeps the HttpOnly hs_token cookie working (SameSite=Lax) and avoids CORS.
+[[redirects]]
+  from = "/api"
+  to = "https://REPLACE-WITH-YOUR-RENDER-APP.onrender.com/api"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://REPLACE-WITH-YOUR-RENDER-APP.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# SPA fallback — keep this last.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
