@@ -1,0 +1,13 @@
+[db] using PostgreSQL persistence (local)
+[research] scheduler started
+Port 3000 busy — trying 3001…
+
+  HealthSphere AI - Family Health Intelligence
+  Server: http://localhost:3000
+  Demo:   demo@healthsphere.ai / demo1234
+
+
+  HealthSphere AI - Family Health Intelligence
+  Server: http://localhost:3001
+  Demo:   demo@healthsphere.ai / demo1234
+
