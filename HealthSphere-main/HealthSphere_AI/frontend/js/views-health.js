@@ -144,8 +144,12 @@ function initialsOf(name) {
 }
 
 VIEWS.family = async function (container) {
-  const { members } = await api('/api/family');
+  const [{ members }, me] = await Promise.all([
+    api('/api/family'),
+    api('/api/me')
+  ]);
   const selfName = App.user?.name || 'You';
+  const selfSex = me?.profile?.sex || '';
 
   const byId = Object.fromEntries(members.map(m => [m.id, m]));
   const anchorOf = m => (m.relationTo && byId[m.relationTo]) || null;
@@ -709,7 +713,7 @@ VIEWS.family = async function (container) {
       const isYou = n.id === 'you';
       const m = n.m;
       const name = isYou ? selfName : (m.name || shortLabel(m));
-      const sex = isYou ? '' : (m.sex || '');
+      const sex = isYou ? selfSex : (m.sex || '');
       const affected = !isYou && ((m.conditions || []).length > 0 || m.cancerHistory);
       const deceased = !isYou && !!m.deceased;
       const fill = affected ? '#DC2626' : '#FFFFFF';
